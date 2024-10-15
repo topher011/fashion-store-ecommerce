@@ -1,0 +1,67 @@
+/* src/components/Navbar.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap');
+*{
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav {
+    background-color:black;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.topher{
+    margin: 0px;
+    padding: 12px;
+    
+}
+.links-name ul li{
+    margin: 12px;
+
+    
+}
+.links-name{
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    
+    
+    
+}
+
+
+
+a {
+    color: white;
+    text-decoration: none;
+    
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff6347;
+}
+
+
+button{
+    background-color: white;
+    color: black;
+    border-color: none;
+    margin: 13px;
+    margin-left: 27px;
+    padding: 5px;
+    border-radius: 8px;
+    
+    
+}
+.sublog{
+    margin-left:12px ;
+}
