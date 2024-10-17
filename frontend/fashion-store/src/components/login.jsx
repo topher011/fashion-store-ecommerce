@@ -1,16 +1,29 @@
-// src/components/Login.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../style/login.css'; // Importing the CSS file for Login
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import '../style/login.css';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle login logic here
-        console.log('Logging in with:', { email, password });
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/login', {
+                email,
+                password,
+            });
+            if (response.data && response.data.userId) {
+                onLogin(response.data.userId);
+                navigate('/'); 
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            setError('Invalid credentials. Please try again.');
+        }
     };
 
     return (
@@ -36,6 +49,7 @@ const Login = () => {
                             required 
                         />
                     </div>
+                    {error && <p className="error-msg">{error}</p>}
                     <button className="login-btn" type="submit">Log In</button>
                 </form>
                 <div className="register-link">

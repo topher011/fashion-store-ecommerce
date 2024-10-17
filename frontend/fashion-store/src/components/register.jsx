@@ -1,16 +1,29 @@
-// src/components/Register.jsx
 import React, { useState } from 'react';
-import '../style/Register.css'; // Importing the CSS file for Register
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import '../style/Register.css';
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle registration logic here
-        console.log('Registering with:', { name, email, password });
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/register', {
+                username: name,
+                email,
+                password,
+            });
+            console.log(response.data);
+            navigate('/login'); // Redirect to login after successful registration
+        } catch (err) {
+            console.error('Registration error:', err);
+            setError('Error registering user. Please try again.');
+        }
     };
 
     return (
@@ -45,6 +58,7 @@ const Register = () => {
                             required 
                         />
                     </div>
+                    {error && <p className="error-msg">{error}</p>}
                     <button className="register-btn" type="submit">Register</button>
                 </form>
             </div>

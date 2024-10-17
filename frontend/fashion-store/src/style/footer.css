@@ -1,9 +1,12 @@
-
+/* Resetting the position to default */
 .footer {
     background-color: #333;
     color: #fff;
     padding: 40px 0;
     text-align: center;
+    width: 100%;
+    position: relative; /* Change from absolute to relative */
+    bottom: 0;
 }
 
 .footer-container {
@@ -62,6 +65,25 @@
     margin: 0;
     font-size: 14px;
 }
-ul li{
+
+/* Ensure list items have spacing */
+ul li {
     margin: 12px;
+}
+
+/* Global settings for page layout to ensure footer is always at the bottom */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
 }
